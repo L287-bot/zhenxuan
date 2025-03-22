@@ -1,23 +1,37 @@
 <template>
   <div class="layout_container">
     <!--左侧菜单-->
-    <div class="layout_slider" :class="{fold:useLayoutStore.fold?true:false}">
+    <div
+      class="layout_slider"
+      :class="{ fold: useLayoutStore.fold ? true : false }"
+    >
       <Logo></Logo>
       <!--滚动组件-->
       <el-scrollbar class="scrollbar">
         <!--菜单-->
-        <el-menu background-color="rgb(60, 63, 65)" text-color="white" active-text-color="rgb(91, 143, 249)"
-                 :default-active="$route.path" :collapse="useLayoutStore.fold?true:false" >
+        <el-menu
+          background-color="rgb(60, 63, 65)"
+          text-color="white"
+          active-text-color="rgb(91, 143, 249)"
+          :default-active="$route.path"
+          :collapse="useLayoutStore.fold ? true : false"
+        >
           <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
     <!--顶部导航-->
-    <div class="layout_tabbar" :class="{fold:useLayoutStore.fold?true:false}">
+    <div
+      class="layout_tabbar"
+      :class="{ fold: useLayoutStore.fold ? true : false }"
+    >
       <Tabbar></Tabbar>
     </div>
     <!--内容展示区-->
-    <div class="layout_main" :class="{fold:useLayoutStore.fold?true:false}">
+    <div
+      class="layout_main"
+      :class="{ fold: useLayoutStore.fold ? true : false }"
+    >
       <Main></Main>
     </div>
   </div>
@@ -29,13 +43,12 @@ import Menu from "./menu/index.vue";
 import useUserStore from "../store/modules/user.ts";
 import Main from "./main/index.vue";
 import Tabbar from "./tabbar/index.vue";
-import {useRoute} from 'vue-router';
+import { useRoute } from "vue-router";
 import useLayoutSettingStore from "/src/store/modules/setting.ts";
 
 const useLayoutStore = useLayoutSettingStore();
 const $route = useRoute();
 let userStore = useUserStore();
-
 </script>
 
 <style scoped lang="scss">
@@ -63,7 +76,6 @@ let userStore = useUserStore();
       width: $base-menu-min-width;
     }
   }
-
 
   .layout_tabbar {
     position: fixed;
@@ -95,7 +107,5 @@ let userStore = useUserStore();
       left: $base-menu-min-width;
     }
   }
-
-
 }
 </style>

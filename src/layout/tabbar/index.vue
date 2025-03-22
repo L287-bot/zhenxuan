@@ -12,12 +12,11 @@
 <script setup lang="ts">
 import TabbarLeft from "./breadcrumb/index.vue";
 import TabbarRight from "./setting/index.vue";
-
 </script>
 <script lang="ts">
 export default {
-  name:"Tabbar"
-}
+  name: "Tabbar",
+};
 </script>
 <style scoped lang="scss">
 .tabbar {
@@ -35,8 +34,6 @@ export default {
   .tabbar_right {
     display: flex;
     align-items: center;
-
   }
 }
-
 </style>

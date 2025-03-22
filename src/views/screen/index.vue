@@ -1,13 +1,9 @@
-<template>
-我是数据大屏一级
-</template>
+<template>我是数据大屏一级</template>
 
 <script>
 export default {
-  name: "index"
-}
+  name: "index",
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

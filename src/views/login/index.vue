@@ -4,56 +4,63 @@
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
         <el-form
-            style="max-width: 600px"
-            :model="loginFormData"
-            :rules="rules"
-            status-icon
-            label-width="auto"
-            class="login_form"
-            ref="checkForm"
+          style="max-width: 600px"
+          :model="loginFormData"
+          :rules="rules"
+          status-icon
+          label-width="auto"
+          class="login_form"
+          ref="checkForm"
         >
           <h1>哈哈臻品</h1>
           <h2>真正的优质选品平台</h2>
           <el-form-item label="用户名" prop="username">
-            <el-input :prefix-icon="User" v-model="loginFormData.username"></el-input>
+            <el-input
+              :prefix-icon="User"
+              v-model="loginFormData.username"
+            ></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
             <el-input
-                type="password"
-                :prefix-icon="Lock"
-                v-model="loginFormData.password"
-                show-password
+              type="password"
+              :prefix-icon="Lock"
+              v-model="loginFormData.password"
+              show-password
             />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" :loading="loading" class="login_btn" @click="Login">
+            <el-button
+              type="primary"
+              :loading="loading"
+              class="login_btn"
+              @click="Login"
+            >
               登录
             </el-button>
           </el-form-item>
         </el-form>
       </el-col>
-
     </el-row>
   </div>
 </template>
 
 <script setup lang="ts">
-import {User, Lock} from "@element-plus/icons-vue";
-import {reactive, ref} from "vue";
-import {reqLogin} from "../../api/user";
+import { User, Lock } from "@element-plus/icons-vue";
+import { reactive, ref } from "vue";
+import { reqLogin } from "../../api/user";
 import useUserStore from "../../store/modules/user";
-import {useRoute, useRouter} from "vue-router";
-import {ElMessage, ElNotification} from "element-plus";
-import {getTime} from "../../utils/time";
-import {validate_email, validate_password} from "../../utils/validate";
+import { useRoute, useRouter } from "vue-router";
+import { ElMessage, ElNotification } from "element-plus";
+import { getTime } from "../../utils/time";
+import { validate_email, validate_password } from "../../utils/validate";
 //userStore 是通过 useUserStore 初始化的，但 useUserStore 是一个函数而非实例
 const userStore = useUserStore();
 const $router = useRouter();
 //收集账号和密码数据
 const loginFormData = reactive({
-  username: 'admin@qq.com',
-  password: 'admin123',
-})
+  username: "admin@qq.com",
+  password: "admin123",
+});
 //登录按钮加载状态
 const loading = ref(false);
 /**
@@ -64,7 +71,7 @@ const loading = ref(false);
  */
 //校验用户名
 const validate_name_rules = (rule: any, value: any, callback: any) => {
-//封装utils的函数validate_email
+  //封装utils的函数validate_email
   let regEmail = validate_email(value);
   if (value === "") {
     callback(new Error("请输入用户名"));
@@ -87,9 +94,9 @@ const validate_password_rules = (rule: any, value: any, callback: any) => {
 };
 //定义表单校验需要的配置对象
 const rules = {
-  username: [{validator: validate_name_rules, trigger: "change"}],
-  password: [{validator: validate_password_rules, trigger: "change"}]
-}
+  username: [{ validator: validate_name_rules, trigger: "change" }],
+  password: [{ validator: validate_password_rules, trigger: "change" }],
+};
 //获取表单组件实例用于校验
 const checkForm = ref();
 //获取路由对象
@@ -107,18 +114,18 @@ const Login = async () => {
     //登录的时候判断路由路劲中是否有query参数
     let redirect: any = $route.query.redirect;
     //编程式导航跳转到数据展示页面
-    await $router.push({path: redirect || "./"});
+    await $router.push({ path: redirect || "./" });
     ElNotification({
-      type: 'success',
+      type: "success",
       message: "欢迎回来",
-      title: `Hi,${getTime()}`
-    })
+      title: `Hi,${getTime()}`,
+    });
     loading.value = false;
   } catch (error) {
     loading.value = false;
     ElMessage.error("登录失败,用户名或密码错误！");
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -127,7 +134,7 @@ const Login = async () => {
   height: 100vh;
   background-size: cover;
   position: fixed;
-  background: url('src/assets/loginBackground.svg') no-repeat 45vh 15vh;
+  background: url("src/assets/loginBackground.svg") no-repeat 45vh 15vh;
 
   .login_form {
     position: relative;
