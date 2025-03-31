@@ -82,6 +82,7 @@ let userStore = useUserStore();
     width: calc(100% - $base-menu-width);
     height: 50px;
     top: 0px;
+    background-color: antiquewhite;
     left: $base-menu-width;
     transition: all 0.3s;
 
@@ -95,7 +96,6 @@ let userStore = useUserStore();
     position: absolute;
     width: calc(100% - $base-menu-width);
     height: calc(100vh - 50px);
-    background-color: yellowgreen;
     left: $base-menu-width;
     top: 50px;
     padding: 20px;

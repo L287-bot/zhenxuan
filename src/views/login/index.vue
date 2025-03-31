@@ -58,8 +58,8 @@ const userStore = useUserStore();
 const $router = useRouter();
 //收集账号和密码数据
 const loginFormData = reactive({
-  username: "admin@qq.com",
-  password: "admin123",
+  username: "admin",
+  password: "111111",
 });
 //登录按钮加载状态
 const loading = ref(false);
@@ -69,29 +69,46 @@ const loading = ref(false);
  * @param value 表单元素文本内容
  * @param callback 函数:如果符合条件callBack放行，不符合注入错误信息
  */
-//校验用户名
+// //校验用户名
+// const validate_name_rules = (rule: any, value: any, callback: any) => {
+//   //封装utils的函数validate_email
+//   let regEmail = validate_email(value);
+//   if (value === "") {
+//     callback(new Error("请输入用户名"));
+//   } else if (!regEmail) {
+//     callback(new Error("用户名格式不正确"));
+//   } else {
+//     callback();
+//   }
+// };
+// //校验密码
+// const validate_password_rules = (rule: any, value: any, callback: any) => {
+//   let regPassword = validate_password(value);
+//   if (value === "") {
+//     callback(new Error("请输入密码"));
+//   } else if (!regPassword) {
+//     callback(new Error("请输入>=6并且<=20位的密码，包含数字、字母"));
+//   } else {
+//     callback();
+//   }
+// };
 const validate_name_rules = (rule: any, value: any, callback: any) => {
-  //封装utils的函数validate_email
-  let regEmail = validate_email(value);
-  if (value === "") {
-    callback(new Error("请输入用户名"));
-  } else if (!regEmail) {
-    callback(new Error("用户名格式不正确"));
+  if (value.length === 0) {
+    callback(new Error('请输入账号'))
   } else {
-    callback();
+    callback()
   }
-};
-//校验密码
+}
+
 const validate_password_rules = (rule: any, value: any, callback: any) => {
-  let regPassword = validate_password(value);
-  if (value === "") {
-    callback(new Error("请输入密码"));
-  } else if (!regPassword) {
-    callback(new Error("请输入>=6并且<=20位的密码，包含数字、字母"));
+  if (value.length === 0) {
+    callback(new Error('请输入密码'))
+  } else if (value.length < 6 || value.length > 16) {
+    callback(new Error('密码应为6~16位的任意组合'))
   } else {
-    callback();
+    callback()
   }
-};
+}
 //定义表单校验需要的配置对象
 const rules = {
   username: [{ validator: validate_name_rules, trigger: "change" }],

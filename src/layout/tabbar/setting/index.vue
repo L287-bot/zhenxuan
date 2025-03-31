@@ -57,10 +57,10 @@ const fullScreen = () => {
     document.exitFullscreen();
   }
 };
-const logout = () => {
+const  logout =async () => {
   //需要向服务器发请求
   //仓库中关于用户的数据清空
-  userStore.userLogout();
+  await userStore.userLogout();
   //跳转到登录页面
   $router.push({ path: "/login", query: { redirect: $route.path } });
 };
