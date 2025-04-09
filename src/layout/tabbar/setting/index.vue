@@ -57,7 +57,7 @@ const fullScreen = () => {
     document.exitFullscreen();
   }
 };
-const  logout =async () => {
+const logout = async () => {
   //需要向服务器发请求
   //仓库中关于用户的数据清空
   await userStore.userLogout();

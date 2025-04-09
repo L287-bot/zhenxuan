@@ -94,21 +94,21 @@ const loading = ref(false);
 // };
 const validate_name_rules = (rule: any, value: any, callback: any) => {
   if (value.length === 0) {
-    callback(new Error('请输入账号'))
+    callback(new Error("请输入账号"));
   } else {
-    callback()
+    callback();
   }
-}
+};
 
 const validate_password_rules = (rule: any, value: any, callback: any) => {
   if (value.length === 0) {
-    callback(new Error('请输入密码'))
+    callback(new Error("请输入密码"));
   } else if (value.length < 6 || value.length > 16) {
-    callback(new Error('密码应为6~16位的任意组合'))
+    callback(new Error("密码应为6~16位的任意组合"));
   } else {
-    callback()
+    callback();
   }
-}
+};
 //定义表单校验需要的配置对象
 const rules = {
   username: [{ validator: validate_name_rules, trigger: "change" }],
